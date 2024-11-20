@@ -7,41 +7,45 @@ class ProfilPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('أين نحن في الكون؟'),
         backgroundColor:
-            const Color.fromARGB(255, 183, 143, 58), // Couleur de l'AppBar
+            const Color.fromARGB(255, 183, 58, 58), // Couleur de l'AppBar
       ),
       drawer: Drawer(
+        backgroundColor: const Color.fromARGB(
+            255, 120, 118, 118), // Change le fond du Drawer en noir
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.orange,
+                color: const Color.fromARGB(
+                    255, 201, 196, 196), // Fond noir pour le DrawerHeader
               ),
               child: Text(
                 'قائمة الصفحة',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.white, // Texte blanc
                   fontSize: 24,
                 ),
               ),
             ),
             ListTile(
-              leading: Icon(Icons.home),
-              title: Text('الصفحة الرئيسية'),
+              leading: Icon(Icons.home, color: Colors.white), // Icône blanche
+              title: Text('الصفحة الرئيسية',
+                  style: TextStyle(color: Colors.white)), // Texte blanc
               onTap: () {
-                Navigator.pushReplacementNamed(context, '/FirstPage');
+                Navigator.pushReplacementNamed(context, '/SecondPage');
               },
             ),
             ListTile(
-              leading: Icon(Icons.person),
-              title: Text(' معلومات'),
+              leading: Icon(Icons.person, color: Colors.white),
+              title: Text('معلومات', style: TextStyle(color: Colors.white)),
               onTap: () {
                 Navigator.pushReplacementNamed(context, '/Profil');
               },
             ),
             ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('قطع الاتصال'),
+              leading: Icon(Icons.logout, color: Colors.white),
+              title: Text('قطع الاتصال', style: TextStyle(color: Colors.white)),
               onTap: () {
                 Navigator.pushReplacementNamed(context, '/login');
               },
@@ -53,7 +57,7 @@ class ProfilPage extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              const Color.fromARGB(255, 183, 143, 58),
+              const Color.fromARGB(255, 183, 58, 58),
               const Color.fromARGB(255, 233, 173, 44),
             ],
             begin: Alignment.topLeft,

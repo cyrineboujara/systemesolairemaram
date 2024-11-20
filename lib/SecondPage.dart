@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class SecondPage extends StatefulWidget {
   @override
   _SecondPageState createState() => _SecondPageState();
@@ -87,7 +88,7 @@ class _SecondPageState extends State<SecondPage> {
           text: firstWord + " ",
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.yellow,
+            color: const Color.fromARGB(176, 236, 79, 79),
           ),
         ),
         TextSpan(
@@ -102,41 +103,46 @@ class _SecondPageState extends State<SecondPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('رحلة في الكواكب'),
-        backgroundColor: Colors.orange,
+        backgroundColor: const Color.fromARGB(
+            255, 150, 128, 128), // Garde la couleur orange du titre
       ),
       drawer: Drawer(
+        backgroundColor: const Color.fromARGB(
+            255, 120, 118, 118), // Change le fond du Drawer en noir
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.orange,
+                color: const Color.fromARGB(
+                    255, 201, 196, 196), // Fond noir pour le DrawerHeader
               ),
               child: Text(
                 'قائمة الصفحة',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.white, // Texte blanc
                   fontSize: 24,
                 ),
               ),
             ),
             ListTile(
-              leading: Icon(Icons.home),
-              title: Text('الصفحة الرئيسية'),
+              leading: Icon(Icons.home, color: Colors.white), // Icône blanche
+              title: Text('الصفحة الرئيسية',
+                  style: TextStyle(color: Colors.white)), // Texte blanc
               onTap: () {
                 Navigator.pushReplacementNamed(context, '/FirstPage');
               },
             ),
             ListTile(
-              leading: Icon(Icons.person),
-              title: Text(' معلومات'),
+              leading: Icon(Icons.person, color: Colors.white),
+              title: Text('معلومات', style: TextStyle(color: Colors.white)),
               onTap: () {
                 Navigator.pushReplacementNamed(context, '/Profil');
               },
             ),
             ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('قطع الاتصال'),
+              leading: Icon(Icons.logout, color: Colors.white),
+              title: Text('قطع الاتصال', style: TextStyle(color: Colors.white)),
               onTap: () {
                 Navigator.pushReplacementNamed(context, '/login');
               },
@@ -147,55 +153,50 @@ class _SecondPageState extends State<SecondPage> {
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/images2.webp"),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Column(
-            children: [
-              Expanded(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Image.asset(
-                        images[_currentIndex]["image"]!,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 20,
-                      height: 50,
-                    ),
-                    Expanded(
-                      child: Container(
-                        padding: EdgeInsets.all(16),
-                        color: Colors.black.withOpacity(0.6),
-                        child: RichText(
-                          text: _formatDescription(
-                              images[_currentIndex]["description"]!),
+            color: Colors.black, // Fond noir pour le corps
+            child: Column(
+              children: [
+                Expanded(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Image.asset(
+                          images[_currentIndex]["image"]!,
+                          fit: BoxFit.cover,
                         ),
                       ),
+                      SizedBox(
+                        width: 20,
+                        height: 50,
+                      ),
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.all(16),
+                          color: Colors.black.withOpacity(0.7),
+                          child: RichText(
+                            text: _formatDescription(
+                                images[_currentIndex]["description"]!),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+                      onPressed: _previousImage,
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.arrow_forward_ios, color: Colors.white),
+                      onPressed: _nextImage,
                     ),
                   ],
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back_ios, color: Colors.white),
-                    onPressed: _previousImage,
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.arrow_forward_ios, color: Colors.white),
-                    onPressed: _nextImage,
-                  ),
-                ],
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
